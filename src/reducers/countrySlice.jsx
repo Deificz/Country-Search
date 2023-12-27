@@ -6,6 +6,7 @@ const initialState = {
 
 export const countrySlice = createSlice({
     name: "country",
+    initialState,
     reducers:{
         decrement: (state) => {
             state.value -= 1
