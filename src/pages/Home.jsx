@@ -7,17 +7,18 @@ import { useCountry } from "../utils/data fetch/country_fetch";
 import { useSelector } from "react-redux";
 
 export default function Home() {
-  const [text1] = useTypewriter({
+  const [country, setCountry] = useState("");
+  const {get_country} = useCountry();
+  const countryData = useSelector(state => state.country.country);
+  const status = useSelector(state => state.country.status);
+
+  const [text] = useTypewriter({
     words: ["nation", "language", "currency"],
     loop: {},
     typeSpeed: 50,
     deleteSpeed: 40,
   });
 
-  const [country, setCountry] = useState("");
-  const {get_country} = useCountry();
-  const countryData = useSelector((state) => state.country.country);
-  const status = useSelector(state => state.country.status);
   const handleSubmit = (e) => {
     e.preventDefault();
     get_country(country);
@@ -33,7 +34,7 @@ export default function Home() {
       <Header/>
       <div className="flex flex-col items-center h-screen mt-40">
         <h1 className="text-3xl font-bold text-white">
-          Know your <span className="text-green-300">{text1}</span>
+          Know your <span className="text-green-300">{text}</span>
         </h1>
         <form
           action=""
