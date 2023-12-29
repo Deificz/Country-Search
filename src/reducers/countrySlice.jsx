@@ -1,19 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    value: 0,
+    status: "Error",
+    country: null,
 }
 
 export const countrySlice = createSlice({
     name: "country",
     initialState,
     reducers:{
-        decrement: (state) => {
-            state.value -= 1
+        SET_COUNTRY: (state,action) => {
+            state.country = action.payload
           },
+        SET_STATUS: (state, action) =>{
+            state.status = action.payload
+        }
     }
 })
 
-export const { decrement } = countrySlice.actions;
+export const { SET_COUNTRY, SET_STATUS } = countrySlice.actions;
 
 export default countrySlice.reducer;

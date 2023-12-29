@@ -1,11 +1,13 @@
-import Router from './utils/Router'
+import Router from "./utils/Router";
+import {CountryProvider} from "./utils/data fetch/country_fetch";
 function App() {
-
   return (
     <>
-      <Router/>
+      <CountryProvider>
+        <Router />
+      </CountryProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

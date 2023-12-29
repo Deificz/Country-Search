@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/header";
 import SearchBar from "../components/search_bar";
 import SearchButton from "../components/search_button";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
+import { useCountry } from "../utils/data fetch/country_fetch";
+import { useSelector } from "react-redux";
+
 export default function Home() {
   const [text1] = useTypewriter({
     words: ["nation", "language", "currency"],
@@ -12,10 +15,18 @@ export default function Home() {
   });
 
   const [country, setCountry] = useState("");
-
+  const {get_country} = useCountry();
+  const countryData = useSelector((state) => state.country.country);
+  const status = useSelector(state => state.country.status);
   const handleSubmit = (e) => {
     e.preventDefault();
+    get_country(country);
   };
+
+  useEffect(() => {
+    if(status === "Done")
+    console.log(countryData);
+  },[status]);
 
   return (
     <>
