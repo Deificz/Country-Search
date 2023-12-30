@@ -32,8 +32,8 @@ export default function Home() {
   return (
     <>
       <Header/>
-      <div className="flex flex-col items-center h-screen mt-40">
-        <h1 className="text-3xl font-bold text-white">
+      <div className="flex flex-col items-center h-screen mt-40 2xl:mt-56">
+        <h1 className="text-3xl font-bold text-white md:text-4xl 2xl:text-5xl">
           Know your <span className="text-green-300">{text}</span>
         </h1>
         <form
