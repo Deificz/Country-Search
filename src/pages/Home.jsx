@@ -5,7 +5,7 @@ import SearchButton from "../components/search_button";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { useCountry } from "../utils/data fetch/country_fetch";
 import { useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 export default function Home() {
   const [country, setCountry] = useState("");
   const {get_country} = useCountry();
@@ -19,21 +19,24 @@ export default function Home() {
     deleteSpeed: 40,
   });
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     get_country(country);
+    
   };
 
   useEffect(() => {
-    if(status === "Done")
-    console.log(countryData);
+    if(status === "Loading")
+    navigate("/info",{replace:true})
   },[status]);
 
   return (
     <>
       <Header/>
       <div className="flex flex-col items-center h-screen mt-40 2xl:mt-56">
-        <h1 className="text-3xl font-bold text-white md:text-4xl 2xl:text-5xl">
+        <h1 className="text-3xl font-bold text-white md:text-4xl 2xl:text-6xl">
           Know your <span className="text-green-300">{text}</span>
         </h1>
         <form
